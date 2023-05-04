@@ -1,32 +1,33 @@
 import fs from "fs";
+
 if (!fs.existsSync("products.json")) {
     fs.writeFileSync("products.json", "[]");
     }
-  export default class ProductManager {
-    
+
+export default class ProductManager {
     constructor(path) {
         this.products = [];
         this.path = path
         this.idAutoInc = -1
     }
     async loadDB(){
-        try {
+        try{
             this.products = JSON.parse(fs.readFileSync(this.path))
             if(this.products.length>0){
             this.idAutoInc=this.products[this.products.length-1].id
             }
-            
-        } catch (error) {
-            console.log("Error loaded")
+        }catch(err){
+            console.log("Error loading database")
         }
-        
     }
+
     async updateDB(){
-        try {
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products, null , 2)) 
-        } catch (error) {
-            console.log("Error loaded")
+        try{
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products ,null, 2))
+        }catch(err){
+            console.log("Error updating database")
         }
+
     }
     
     async addProduct({title, description, code, price, status, stock, category, thumbnails}){
@@ -87,47 +88,15 @@ if (!fs.existsSync("products.json")) {
 
     async deleteProduct(id){
         await this.loadDB()
-        const index = this.products.findIndex(product => product.id == id)
+        const index = this.products.findIndex(product => product.id === id)
         if(index !== -1){
             this.products.splice(index,index+1)
             await this.updateDB()
-            console.log("product deleted succesfully")
-          }else{
+            console.log(`Product ${id} Deleted succesfully`)
+        }else{
             console.log(`Failed to Delete Product, Product ${id} was not found`)
-          }
         }
     }
-
-    //TEST
-//AGREGAR PRODUCTOS AL JSON
-    
-
-    //const merch = new ProductManager("products.json");
-/*merch.addProduct("SPITFIRE HOODIE BIGHEAD", "Hoddie color naranja, con estampa al frente.", 10000, "spitfire.jpg", "2Hoddie", 5)
-merch.addProduct("SINCOPE DECK KOALA BUONA PASTA 8.25", "Tabla skate Sincope", 15000, "sincope.jpg","20Deck", 7)
-merch.addProduct("TABLA CREATURE GRAPHIC MONSTER MOBILE 8", "Tabla Creature", 21300, "creature.jpg","21Deck", 3)
-merch.addProduct("DECK CLEAVER MARTINEZ KEYS BLANCO", "Tabla skate Cleaver", 18200, "cleaver.jpg", "22Deck", 9)
-merch.addProduct("DECK SANTA CRUZ SALBA TIGER HAND BORDO 9.25", "Tabla Santa Cruz", 30000, "deckSC.jpg", "23Deck", 8)
-merch.addProduct("Nike Air Force one","blanca",30000,"Nike.jpg","31AirF",15)
-merch.addProduct("Vans old","Un clásico",23000,"VANS.jpg","32Va",23)
-merch.addProduct("Vans x NatGeo","Colaboración con NatGeo",20000,"vansNatGeo.jpg","33VaNG",10)
-merch.addProduct("Vans x Simpsons","Colaboración con Simpsons",25000,"vanSimp.jpg","34VaS",12)
-merch.addProduct("Pantalón New Balance Unissentials Swea", "Ofrece una expresión sin género del estilo clásico de esta marca.",15200, "NewBalancePants.jpg", "35NBPants", 10)
-merch.addProduct("Campera adidas originals 3 Stripe Wrap", "Confeccionada en tejido poliéster 100% reciclado", 27000, "camperaAdidas.jpg", "36Adid", 5)
-
-console.log(merch.getProducts())*/
-
-
-//ACTUALIZAR  UN PRODUCTO JSON
-/*merch.updateProduct(1,{price:19000,stock:12});
-
-console.log(merch.getProducts())*/
-
-
-//ELIMINAR UN PRODUCTO POR ID DADO
-/*merch.deleteProduct(0);
-
-console.log(merch.getProducts())*/
-
+}
 
 
