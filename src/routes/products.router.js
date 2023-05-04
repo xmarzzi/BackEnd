@@ -4,7 +4,7 @@ import ProductManager from "../productManager.js";
 export const routerProducts = Router()
 const productManager = new ProductManager("./products.json");
 
-//let data = await fs.promises.readFile('./src/products.json');
+let data = await fs.promises.readFile('./src/products.json');
 
 
 routerProducts.get('/', async (req, res) => {
