@@ -124,7 +124,7 @@ console.log(merch.getProducts())*/
 console.log(merch.getProducts())*/
 
 
-//ELIMINAR UN PRODUCTO POR ID DADO
+//ELIMINAR UN PRODUCTO SEGÚN ID
 /*merch.deleteProduct(0);
 
 console.log(merch.getProducts())*/
