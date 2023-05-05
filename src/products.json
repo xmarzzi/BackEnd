@@ -1,23 +1,12 @@
 [
   {
-    "id": 0,
-    "title": "SPITFIRE HOODIE BIGHEAD",
-    "description": "Hoddie color naranja, con estampa al frente.",
-    "code": "2Hoddie",
-    "price": 10000,
-    "status": true,
-    "stock": 5,
-    "category": "Indumentary",
-    "thumbnails": "spitfire.jpg"
-  },
-  {
-    "id": 1,
+    "id": "1",
     "title": "SINCOPE DECK KOALA BUONA PASTA 8.25",
     "description": "Tabla skate Sincope",
     "code": "20Deck",
-    "price": 19000,
+    "price": 12000,
     "status": true,
-    "stock": 12,
+    "stock": 11,
     "category": "Deck Skate",
     "thumbnails": "sincope.jpg"
   },
@@ -56,7 +45,7 @@
   },
   {
     "id": 5,
-    "title": "Nike Air Force one",
+    "title": "NIKE AIR FORCE",
     "description": "blanca",
     "code": "31AirF",
     "price": 30000,
@@ -67,7 +56,7 @@
   },
   {
     "id": 6,
-    "title": "Vans old",
+    "title": "VANS OLD SCHOOL",
     "description": "Un clásico",
     "code": "32Va",
     "price": 23000,
@@ -78,7 +67,7 @@
   },
   {
     "id": 7,
-    "title": "Vans x NatGeo",
+    "title": "VANS X NatGeo",
     "description": "Colaboración con NatGeo",
     "code": "33VaNG",
     "price": 20000,
@@ -89,7 +78,7 @@
   },
   {
     "id": 8,
-    "title": "Vans x Simpsons",
+    "title": "VANS X THE SIMPSONS",
     "description": "Colaboración con Simpsons",
     "code": "34VaS",
     "price": 25000,
@@ -100,7 +89,7 @@
   },
   {
     "id": 9,
-    "title": "Pantalón New Balance Unissentials Swea",
+    "title": "PANTALÓN NEW BALANCE UNISSENTIAL SWEA",
     "description": "Ofrece una expresión sin género del estilo clásico de esta marca.",
     "code": "35NBPants",
     "price": 15200,
@@ -111,7 +100,7 @@
   },
   {
     "id": 10,
-    "title": "Campera adidas originals 3 Stripe Wrap",
+    "title": "CAMPERA ADIDAS ORIGINALS 3 STRIPE WRAP",
     "description": "Confeccionada en tejido poliéster 100% reciclado, cierre delantero, cuello alzado , bolsillos frontales con cremallera.",
     "code": "36Adid",
     "price": 2700,
@@ -119,5 +108,19 @@
     "stock": 15,
     "category": "Indumentary",
     "thumbnails": "camperaAdidas.jpg"
+  },
+  {
+    "id": 11,
+    "title": "JOGGER ASFALTO BIG",
+    "description": "Todos los pantalones Hocks Skate son ajustables en la cintura mediante cordones de doble cara. Algo que ha sido adoptado por los patinadores desde la década de 2000 y continúa hasta el día de hoy.",
+    "code": "AS01",
+    "price": 6800,
+    "status": true,
+    "stock": 17,
+    "category": "Indumentary",
+    "thumbnails": [
+      "HK.jpg",
+      "AS.jpg"
+    ]
   }
 ]

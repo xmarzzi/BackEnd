@@ -1,7 +1,7 @@
 import { Router } from "express";
 import ProductManager from "../productManager.js";
 export const productsRouter = Router();
-const manager = new ProductManager("./src/products.json");
+const manager = new ProductManager("src/products.json");
 
 
 productsRouter.get('/', async (req, res) => {
@@ -30,16 +30,6 @@ productsRouter.get('/', async (req, res) => {
         console.log("Unkown error: ", error)
     }});
 
-// productsRouter.get("/", async (req, res) => {
-//     const products = await manager.getProducts();
-//     const limit = req.query.limit;
-//     if(limit){
-//         const limits = parseInt(limit);
-//         const result = products.slice(0,limits);
-//         res.send(result);
-//     }else res.send(products);
-// })
-
 
 productsRouter.get("/:pid", async (req, res) => {
     try {
@@ -66,12 +56,19 @@ productsRouter.get("/:pid", async (req, res) => {
 productsRouter.post("/", async (req, res) =>{
     try {
         const newProduct = req.body;
-        await manager.addProduct(newProduct);
-        return res.status(200).json({
-            status:"Success",
-            msg:"Producto agregado",
-            data:newProduct
-        });
+        const add = await manager.addProduct(newProduct);
+        if (!add) {
+            return res.status(200).json({
+                status:"Success",
+                msg:"Producto agregado",
+                data:newProduct
+            });
+        }else{
+            return res.status(400).json({
+                status:"Error",
+                msg:add,
+            });
+        }
     } catch (error) {
         console.log("Error en agregar producto", error)
     }
@@ -79,15 +76,34 @@ productsRouter.post("/", async (req, res) =>{
 
 productsRouter.put("/:pid", async (req, res) => {
     try {
-        const id = req.params.pid;
-        const modificated = req.body;
-        await manager.updateProduct(id,modificated)
-        return res.status(200).json({
-            status:"Success",
-            msg:"Producto modificado",
-            data:modificated
-        });
-    } catch (error) {
-        console.log("Error al modificar el producto", error)
-    }
+            const id = req.params.pid;
+            const modific = req.body;
+            const update = await manager.updateProduct(id,modific);
+            if (!update) {
+                return res.status(200).json({
+                    status:"Success",
+                    msg:"Producto agregado",
+                    data:modific
+                });
+            }else{
+                return res.status(400).json({
+                    status:"Error",
+                    msg:update,
+                });
+            }
+        } catch (error) {
+            console.log("Error en agregar producto", error)
+        }
+        
+});
+
+productsRouter.delete("/:pid", async (req, res) => {
+    const id = req.params.pid;
+    const product = await manager.getProductById(id)
+     await manager.deleteProduct(id)
+    return res.status(200).json({
+        status:"Sucess",
+        msg:`El producto con id ${id} fué eliminado exitosamente`,
+        data: product
+    });
 })

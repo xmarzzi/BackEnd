@@ -1,8 +1,10 @@
 import fs from "fs";
+
 if (!fs.existsSync("products.json")) {
-    fs.writeFileSync("products.json", "[]");
+        fs.writeFileSync("products.json", "[]");
     }
-  export default class ProductManager {
+  
+export default class ProductManager {
     
     constructor(path) {
         this.products = [];
@@ -17,7 +19,7 @@ if (!fs.existsSync("products.json")) {
             }
             
         } catch (error) {
-            console.log("Error loaded")
+            console.log("Error loaded",error)
         }
         
     }
@@ -25,11 +27,11 @@ if (!fs.existsSync("products.json")) {
         try {
             await fs.promises.writeFile(this.path, JSON.stringify(this.products, null , 2)) 
         } catch (error) {
-            console.log("Error loaded")
+            console.log("Error loaded",error)
         }
     }
     
-    async addProduct(title,description,code,price,stock,category,thumbnails){
+    async addProduct({title,description,code,price,stock,category,thumbnails={}}){
         await this.loadDB()
         this.idAutoInc++
         const repeatedProduct = this.products.some(item => item.code === code)
@@ -50,7 +52,7 @@ if (!fs.existsSync("products.json")) {
             
 
         }else{
-            console.log("Error, duplicated product, or invalid parameters")
+            return "Error, duplicated product, or invalid parameters";
         }
     }
 
@@ -70,14 +72,14 @@ if (!fs.existsSync("products.json")) {
         if(productIfExists){
             return productIfExists
         }else{
-            console.log(`Failed to get Product, Product ${id} was not found`)
+            return `Failed to get Product, Product ${id} was not found`;
         }
     }
 
     async updateProduct(id,parameters){
         await this.loadDB()
         
-        const index = this.products.findIndex(product => product.id === id)
+        const index = this.products.findIndex(product => product.id == id)
         if(index !== -1){
             const parameterTitle=parameters.title ?? this.products[index].title;
             const parameterDescription=parameters.description ?? this.products[index].description;
@@ -100,19 +102,19 @@ if (!fs.existsSync("products.json")) {
             }
             await this.updateDB()
         }else{
-            console.log(`Product ${id} was not found`) 
+            return `Product ${id} was not found`; 
         }
     }
 
     async deleteProduct(id){
         await this.loadDB()
-        const index = this.products.findIndex(product => product.id === id)
+        const index = this.products.findIndex(product => product.id == id)
         if(index !== -1){
             this.products.splice(index,index+1)
             await this.updateDB()
             console.log("product deleted succesfully")
           }else{
-            console.log(`Failed to Delete Product, Product ${id} was not found`)
+            return `Failed to Delete Product, Product ${id} was not found`;
           }
         }
     }
@@ -121,18 +123,17 @@ if (!fs.existsSync("products.json")) {
 
     // TEST
     // ADD PRODUCTS
-
-    /*merch.addProduct("SPITFIRE HOODIE BIGHEAD", "Hoddie color naranja, con estampa al frente.", "2Hoddie", 10000, 5, "Indumentary", "spitfire.jpg" )
-    merch.addProduct("SINCOPE DECK KOALA BUONA PASTA 8.25", "Tabla skate Sincope","20Deck", 15000, 7, "Deck Skate","sincope.jpg")
-    merch.addProduct("TABLA CREATURE GRAPHIC MONSTER MOBILE 8", "Tabla Creature","21Deck", 21300, 9, "Deck Skate", "creature.jpg")
-    merch.addProduct("DECK CLEAVER MARTINEZ KEYS BLANCO", "Tabla skate Cleaver","22Deck", 18200, 12, "Deck Skate", "cleaver.jpg")
-    merch.addProduct("DECK SANTA CRUZ SALBA TIGER HAND BORDO 9.25", "Tabla Santa Cruz","23Deck", 30000, 16, "Deck Skate", "deckSC.jpg")
-    merch.addProduct("Nike Air Force one","blanca","31AirF", 30000, 12, "Shoes","Nike.jpg")
-    merch.addProduct("Vans old","Un clásico","32Va", 23000, 20, "Shoes", "VANS.jpg")
-    merch.addProduct("Vans x NatGeo","Colaboración con NatGeo", "33VaNG", 20000, 7, "Shoes", "vansNatGeo.jpg")
-    merch.addProduct("Vans x Simpsons","Colaboración con Simpsons", "34VaS", 25000, 8, "Shoes", "vanSimp.jpg")
-    merch.addProduct("Pantalón New Balance Unissentials Swea", "Ofrece una expresión sin género del estilo clásico de esta marca.", "35NBPants", 15200, 10, "Indumentary", "NewBalancePants.jpg")
-    merch.addProduct("Campera adidas originals 3 Stripe Wrap", "Confeccionada en tejido poliéster 100% reciclado, cierre delantero, cuello alzado , bolsillos frontales con cremallera.", "36Adid", 2700, 15, "Indumentary", "camperaAdidas.jpg")
+    /*merch.addProduct({title: "SPITFIRE HOODIE BIGHEAD", description: "Hoddie color naranja, con estampa al frente.", code: "2Hoddie", price: 10000, stock: 5, category: "Indumentary", thumbnails: "spitfire.jpg" })
+    merch.addProduct({title: "SINCOPE DECK KOALA BUONA PASTA 8.25", description: "Tabla skate Sincope",code: "20Deck", price: 15000, stock: 7, category: "Deck Skate", thumbnails:"sincope.jpg"})
+    merch.addProduct({title: "TABLA CREATURE GRAPHIC MONSTER MOBILE 8", description: "Tabla Creature",code: "21Deck", price: 21300, stock: 9, category: "Deck Skate", thumbnails:"creature.jpg"})
+    merch.addProduct({title: "DECK CLEAVER MARTINEZ KEYS BLANCO", description: "Tabla skate Cleaver",code: "22Deck", price: 18200, stock: 12, category: "Deck Skate", thumbnails:"cleaver.jpg"})
+    merch.addProduct({title: "DECK SANTA CRUZ SALBA TIGER HAND BORDO 9.25", description: "Tabla Santa Cruz",code: "23Deck", price: 30000, stock: 16, category: "Deck Skate", thumbnails:"deckSC.jpg"})
+    merch.addProduct({title: "NIKE AIR FORCE",description: "blanca",code: "31AirF", price: 30000, stock: 12, category: "Shoes",thumbnails:"Nike.jpg"})
+    merch.addProduct({title: "VANS OLD SCHOOL",description: "Un clásico",code: "32Va", price: 23000, stock: 20, category: "Shoes", thumbnails:"VANS.jpg"})
+    merch.addProduct({title: "VANS X NatGeo",description: "Colaboración con NatGeo", code: "33VaNG", price: 20000, stock: 7, category: "Shoes", thumbnails:"vansNatGeo.jpg"})
+    merch.addProduct({title: "VANS X THE SIMPSONS",description: "Colaboración con Simpsons", code: "34VaS", price: 25000, stock: 8, category: "Shoes", thumbnails:"vanSimp.jpg"})
+    merch.addProduct({title: "PANTALÓN NEW BALANCE UNISSENTIAL SWEA", description: "Ofrece una expresión sin género del estilo clásico de esta marca.", code: "35NBPants", price: 15200, stock: 10, category: "Indumentary", thumbnails:"NewBalancePants.jpg"})
+    merch.addProduct({title: "CAMPERA ADIDAS ORIGINALS 3 STRIPE WRAP", description: "Confeccionada en tejido poliéster 100% reciclado, cierre delantero, cuello alzado , bolsillos frontales con cremallera.", code: "36Adid", price: 2700, stock: 15, category: "Indumentary", thumbnails:"camperaAdidas.jpg"})
 
     console.log(merch.getProducts())*/
 
