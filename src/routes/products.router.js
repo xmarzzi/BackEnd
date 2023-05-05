@@ -62,3 +62,32 @@ productsRouter.get("/:pid", async (req, res) => {
        console.log("Error en /products/id", error)
     }
 });
+
+productsRouter.post("/", async (req, res) =>{
+    try {
+        const newProduct = req.body;
+        await manager.addProduct(newProduct);
+        return res.status(200).json({
+            status:"Success",
+            msg:"Producto agregado",
+            data:newProduct
+        });
+    } catch (error) {
+        console.log("Error en agregar producto", error)
+    }
+})
+
+productsRouter.put("/:pid", async (req, res) => {
+    try {
+        const id = req.params.pid;
+        const modificated = req.body;
+        await manager.updateProduct(id,modificated)
+        return res.status(200).json({
+            status:"Success",
+            msg:"Producto modificado",
+            data:modificated
+        });
+    } catch (error) {
+        console.log("Error al modificar el producto", error)
+    }
+})
