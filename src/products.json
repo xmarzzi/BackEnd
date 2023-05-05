@@ -3,99 +3,121 @@
     "id": 0,
     "title": "SPITFIRE HOODIE BIGHEAD",
     "description": "Hoddie color naranja, con estampa al frente.",
-    "price": 10000,
-    "thumbnail": "spitfire.jpg",
     "code": "2Hoddie",
-    "stock": 5
+    "price": 10000,
+    "status": true,
+    "stock": 5,
+    "category": "Indumentary",
+    "thumbnails": "spitfire.jpg"
   },
   {
     "id": 1,
     "title": "SINCOPE DECK KOALA BUONA PASTA 8.25",
     "description": "Tabla skate Sincope",
-    "price": 15000,
-    "thumbnail": "sincope.jpg",
     "code": "20Deck",
-    "stock": 7
+    "price": 19000,
+    "status": true,
+    "stock": 12,
+    "category": "Deck Skate",
+    "thumbnails": "sincope.jpg"
   },
   {
     "id": 2,
     "title": "TABLA CREATURE GRAPHIC MONSTER MOBILE 8",
     "description": "Tabla Creature",
-    "price": 21300,
-    "thumbnail": "creature.jpg",
     "code": "21Deck",
-    "stock": 3
+    "price": 21300,
+    "status": true,
+    "stock": 9,
+    "category": "Deck Skate",
+    "thumbnails": "creature.jpg"
   },
   {
     "id": 3,
     "title": "DECK CLEAVER MARTINEZ KEYS BLANCO",
     "description": "Tabla skate Cleaver",
-    "price": 18200,
-    "thumbnail": "cleaver.jpg",
     "code": "22Deck",
-    "stock": 9
+    "price": 18200,
+    "status": true,
+    "stock": 12,
+    "category": "Deck Skate",
+    "thumbnails": "cleaver.jpg"
   },
   {
     "id": 4,
     "title": "DECK SANTA CRUZ SALBA TIGER HAND BORDO 9.25",
     "description": "Tabla Santa Cruz",
-    "price": 30000,
-    "thumbnail": "deckSC.jpg",
     "code": "23Deck",
-    "stock": 8
+    "price": 30000,
+    "status": true,
+    "stock": 16,
+    "category": "Deck Skate",
+    "thumbnails": "deckSC.jpg"
   },
   {
     "id": 5,
     "title": "Nike Air Force one",
     "description": "blanca",
-    "price": 30000,
-    "thumbnail": "Nike.jpg",
     "code": "31AirF",
-    "stock": 15
+    "price": 30000,
+    "status": true,
+    "stock": 12,
+    "category": "Shoes",
+    "thumbnails": "Nike.jpg"
   },
   {
     "id": 6,
     "title": "Vans old",
     "description": "Un clásico",
-    "price": 23000,
-    "thumbnail": "VANS.jpg",
     "code": "32Va",
-    "stock": 23
+    "price": 23000,
+    "status": true,
+    "stock": 20,
+    "category": "Shoes",
+    "thumbnails": "VANS.jpg"
   },
   {
     "id": 7,
     "title": "Vans x NatGeo",
     "description": "Colaboración con NatGeo",
-    "price": 20000,
-    "thumbnail": "vansNatGeo.jpg",
     "code": "33VaNG",
-    "stock": 10
+    "price": 20000,
+    "status": true,
+    "stock": 7,
+    "category": "Shoes",
+    "thumbnails": "vansNatGeo.jpg"
   },
   {
     "id": 8,
     "title": "Vans x Simpsons",
     "description": "Colaboración con Simpsons",
-    "price": 25000,
-    "thumbnail": "vanSimp.jpg",
     "code": "34VaS",
-    "stock": 12
+    "price": 25000,
+    "status": true,
+    "stock": 8,
+    "category": "Shoes",
+    "thumbnails": "vanSimp.jpg"
   },
   {
     "id": 9,
     "title": "Pantalón New Balance Unissentials Swea",
     "description": "Ofrece una expresión sin género del estilo clásico de esta marca.",
-    "price": 15200,
-    "thumbnail": "NewBalancePants.jpg",
     "code": "35NBPants",
-    "stock": 10
+    "price": 15200,
+    "status": true,
+    "stock": 10,
+    "category": "Indumentary",
+    "thumbnails": "NewBalancePants.jpg"
   },
   {
     "id": 10,
     "title": "Campera adidas originals 3 Stripe Wrap",
-    "description": "Confeccionada en tejido poliéster 100% reciclado",
-    "price": 27000,
-    "thumbnail": "camperaAdidas.jpg",
+    "description": "Confeccionada en tejido poliéster 100% reciclado, cierre delantero, cuello alzado , bolsillos frontales con cremallera.",
     "code": "36Adid",
-    "stock": 5
+    "price": 2700,
+    "status": true,
+    "stock": 15,
+    "category": "Indumentary",
+    "thumbnails": "camperaAdidas.jpg"
   }
 ]

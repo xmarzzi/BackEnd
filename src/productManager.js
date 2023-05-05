@@ -29,25 +29,28 @@ if (!fs.existsSync("products.json")) {
         }
     }
     
-    async addProduct({title, description, code, price, status, stock, category, thumbnails}){
+    async addProduct(title,description,code,price,stock,category,thumbnails){
         await this.loadDB()
         this.idAutoInc++
-        const productIfRepeated = this.products.some(item => item.code === code)
-        if(productIfRepeated === false && title && description && code && price && status && stock && category){
+        const repeatedProduct = this.products.some(item => item.code === code)
+        if(repeatedProduct === false && title && description && code && price && stock && category && thumbnails){
             this.products.push({
                 id:this.idAutoInc,
                 title: title,
-                description: description,
-                code: code,
-                price: price,
-                status: status,
-                stock: stock,
-                category: category,
-                thumbnails: thumbnails  
+                description:description,
+                code:code,
+                price:price,
+                status:true,
+                stock:stock,
+                category:category,
+                thumbnails:thumbnails
+
             })
             await this.updateDB()
+            
+
         }else{
-            console.log("Error, duplicated product or invalid parameters")
+            console.log("Error, duplicated product, or invalid parameters")
         }
     }
 
@@ -73,13 +76,29 @@ if (!fs.existsSync("products.json")) {
 
     async updateProduct(id,parameters){
         await this.loadDB()
+        
         const index = this.products.findIndex(product => product.id === id)
         if(index !== -1){
-            for (const property in this.products[index]) {
-                this.products[index][property]=parameters[property] ?? this.products[index][property]
+            const parameterTitle=parameters.title ?? this.products[index].title;
+            const parameterDescription=parameters.description ?? this.products[index].description;
+            const parameterCode=parameters.code ?? this.products[index].code;
+            const parameterPrice=parameters.price ?? this.products[index].price;
+            const parameterCategory=parameters.category ?? this.products[index].category;
+            const parameterStock=parameters.stock ?? this.products[index].stock;
+            const parameterThumbnails=parameters.thumbnails ?? this.products[index].thumbnails;
+    
+            this.products[index] = {
+                id:id,
+                title:parameterTitle,
+                description:parameterDescription,
+                code:parameterCode,
+                price:parameterPrice,
+                status:true,
+                stock:parameterStock,
+                category:parameterCategory,
+                thumbnails:parameterThumbnails
             }
             await this.updateDB()
-            console.log(`Product ${id} Updated`) 
         }else{
             console.log(`Product ${id} was not found`) 
         }
@@ -87,7 +106,7 @@ if (!fs.existsSync("products.json")) {
 
     async deleteProduct(id){
         await this.loadDB()
-        const index = this.products.findIndex(product => product.id == id)
+        const index = this.products.findIndex(product => product.id === id)
         if(index !== -1){
             this.products.splice(index,index+1)
             await this.updateDB()
@@ -98,36 +117,32 @@ if (!fs.existsSync("products.json")) {
         }
     }
 
-    //TEST
-//AGREGAR PRODUCTOS AL JSON
-    
+    const merch = new ProductManager("products.json");
 
-    //const merch = new ProductManager("products.json");
-/*merch.addProduct("SPITFIRE HOODIE BIGHEAD", "Hoddie color naranja, con estampa al frente.", 10000, "spitfire.jpg", "2Hoddie", 5)
-merch.addProduct("SINCOPE DECK KOALA BUONA PASTA 8.25", "Tabla skate Sincope", 15000, "sincope.jpg","20Deck", 7)
-merch.addProduct("TABLA CREATURE GRAPHIC MONSTER MOBILE 8", "Tabla Creature", 21300, "creature.jpg","21Deck", 3)
-merch.addProduct("DECK CLEAVER MARTINEZ KEYS BLANCO", "Tabla skate Cleaver", 18200, "cleaver.jpg", "22Deck", 9)
-merch.addProduct("DECK SANTA CRUZ SALBA TIGER HAND BORDO 9.25", "Tabla Santa Cruz", 30000, "deckSC.jpg", "23Deck", 8)
-merch.addProduct("Nike Air Force one","blanca",30000,"Nike.jpg","31AirF",15)
-merch.addProduct("Vans old","Un clásico",23000,"VANS.jpg","32Va",23)
-merch.addProduct("Vans x NatGeo","Colaboración con NatGeo",20000,"vansNatGeo.jpg","33VaNG",10)
-merch.addProduct("Vans x Simpsons","Colaboración con Simpsons",25000,"vanSimp.jpg","34VaS",12)
-merch.addProduct("Pantalón New Balance Unissentials Swea", "Ofrece una expresión sin género del estilo clásico de esta marca.",15200, "NewBalancePants.jpg", "35NBPants", 10)
-merch.addProduct("Campera adidas originals 3 Stripe Wrap", "Confeccionada en tejido poliéster 100% reciclado", 27000, "camperaAdidas.jpg", "36Adid", 5)
+    // TEST
+    // ADD PRODUCTS
 
-console.log(merch.getProducts())*/
+    /*merch.addProduct("SPITFIRE HOODIE BIGHEAD", "Hoddie color naranja, con estampa al frente.", "2Hoddie", 10000, 5, "Indumentary", "spitfire.jpg" )
+    merch.addProduct("SINCOPE DECK KOALA BUONA PASTA 8.25", "Tabla skate Sincope","20Deck", 15000, 7, "Deck Skate","sincope.jpg")
+    merch.addProduct("TABLA CREATURE GRAPHIC MONSTER MOBILE 8", "Tabla Creature","21Deck", 21300, 9, "Deck Skate", "creature.jpg")
+    merch.addProduct("DECK CLEAVER MARTINEZ KEYS BLANCO", "Tabla skate Cleaver","22Deck", 18200, 12, "Deck Skate", "cleaver.jpg")
+    merch.addProduct("DECK SANTA CRUZ SALBA TIGER HAND BORDO 9.25", "Tabla Santa Cruz","23Deck", 30000, 16, "Deck Skate", "deckSC.jpg")
+    merch.addProduct("Nike Air Force one","blanca","31AirF", 30000, 12, "Shoes","Nike.jpg")
+    merch.addProduct("Vans old","Un clásico","32Va", 23000, 20, "Shoes", "VANS.jpg")
+    merch.addProduct("Vans x NatGeo","Colaboración con NatGeo", "33VaNG", 20000, 7, "Shoes", "vansNatGeo.jpg")
+    merch.addProduct("Vans x Simpsons","Colaboración con Simpsons", "34VaS", 25000, 8, "Shoes", "vanSimp.jpg")
+    merch.addProduct("Pantalón New Balance Unissentials Swea", "Ofrece una expresión sin género del estilo clásico de esta marca.", "35NBPants", 15200, 10, "Indumentary", "NewBalancePants.jpg")
+    merch.addProduct("Campera adidas originals 3 Stripe Wrap", "Confeccionada en tejido poliéster 100% reciclado, cierre delantero, cuello alzado , bolsillos frontales con cremallera.", "36Adid", 2700, 15, "Indumentary", "camperaAdidas.jpg")
 
+    console.log(merch.getProducts())*/
 
-//ACTUALIZAR  UN PRODUCTO JSON
-/*merch.updateProduct(1,{price:19000,stock:12});
+    // UPDATE PRODUCTS
+    /*merch.updateProduct(1,{price:19000,stock:12});
 
-console.log(merch.getProducts())*/
-
-
-//ELIMINAR UN PRODUCTO SEGÚN ID
-/*merch.deleteProduct(0);
-
-console.log(merch.getProducts())*/
+    console.log(merch.getProducts())*/
 
 
+    // DELETE PRODUCTS FOR ID
+    /*merch.deleteProduct(0);
 
+    console.log(merch.getProducts())*/

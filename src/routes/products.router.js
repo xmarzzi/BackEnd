@@ -1,15 +1,12 @@
 import { Router } from "express";
-import fs from "fs";
 import ProductManager from "../productManager.js";
-export const routerProducts = Router()
-const productManager = new ProductManager("./products.json");
-
-let data = await fs.promises.readFile('./src/products.json');
+export const productsRouter = Router();
+const manager = new ProductManager("./src/products.json");
 
 
-routerProducts.get('/', async (req, res) => {
+productsRouter.get('/', async (req, res) => {
     try {
-        const products = await productManager.getProducts()
+        const products = await manager.getProducts()
         const limit = req.query.limit;
         if(products.length===0){
             return res.status(418).json({
@@ -33,12 +30,21 @@ routerProducts.get('/', async (req, res) => {
         console.log("Unkown error: ", error)
     }});
 
+// productsRouter.get("/", async (req, res) => {
+//     const products = await manager.getProducts();
+//     const limit = req.query.limit;
+//     if(limit){
+//         const limits = parseInt(limit);
+//         const result = products.slice(0,limits);
+//         res.send(result);
+//     }else res.send(products);
+// })
 
 
-routerProducts.get("/:pid", async (req, res) => {
+productsRouter.get("/:pid", async (req, res) => {
     try {
         const id = req.params.pid;
-        const product = await productManager.getProductById(id)
+        const product = await manager.getProductById(id)
         if(product){
             return res.status(200).json({
                 status:"Success",
@@ -56,47 +62,3 @@ routerProducts.get("/:pid", async (req, res) => {
        console.log("Error en /products/id", error)
     }
 });
-
-    
-
-
-/*routerProducts.post("/",async (req,res) => {
-    try{
-        const productBody = req.body;
-        await ProductManager.addProduct(productBody)
-
-        return res.status(200).json({
-            status:"Success", 
-            msg:"Producto Agregado",
-        });
-    } catch (error) {
-        console.log("Error en /products/id", error)
-     }
-})
-
-routerProducts.put("/:pid",async (req,res) => {
-    try{
-        const id=req.params.pid;
-        const productBody = req.body;
-        await ProductManager.updateProduct(id,...productBody)
-
-        return res.status(201).json({
-            status:"success", 
-            msg:"Producto Actualizado", 
-            data: productBody,
-        });
-    } catch (error) {
-        console.log("Error en /products/id", error)
-     }
-})
-
-routerProducts.delete("/:pid", (req,res) => {
-    const id=req.params.pid;
-    ProductManager.deleteProduct(id)
-
-    return res.status(201).json({
-        status:"success", 
-        msg:"Producto Eliminado", 
-        data: productBody,
-     });
-})*/
