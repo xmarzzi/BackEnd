@@ -1,5 +1,6 @@
 import fs from "fs";
 import ProductManager from "./productManager.js";
+import { isGeneratorFunction } from "util/types";
 
 const productAll = new ProductManager
 
@@ -68,7 +69,16 @@ export default class CartManager{
     }
 
     async addProductsToCartS(cid, id){
-        
+        await this.loadCarts();
+        const cartExist = this.carts.find(cart => cart.id == cid)
+        const productExist = await productAll.getProductById(id)
+        if (!cartExist) {
+            console.log("Cart not exist");
+        }else if (!productExist){
+            console.log("Product not exist");
+        }else{
+            
+        }
     } 
 }
 
