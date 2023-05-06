@@ -122,5 +122,16 @@
       "HK.jpg",
       "AS.jpg"
     ]
+  },
+  {
+    "id": 12,
+    "title": "HOKS JEANS TEMPO REGULAR",
+    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
+    "code": "hk01",
+    "price": 6900,
+    "status": true,
+    "stock": 10,
+    "category": "Indumentary",
+    "thumbnails": []
   }
 ]
