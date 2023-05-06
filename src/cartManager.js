@@ -32,13 +32,13 @@ export default class CartManager{
         }
     }
 
-    async addCart(products){
+    async addCart({products=[]}){
         await this.loadCarts()
         this.idAutoInc++
         if (products) {
             this.carts.push({
                 id:this.idAutoInc,
-                products: [{id:"", quantity:""}]
+                products:products
             })   
             await this.updateCarts();
         } else {
@@ -67,23 +67,19 @@ export default class CartManager{
         }
     }
 
-    async addProductsToCarts(cid, id){
-        
-            let carts = await this.getCarts();
-            const cartIndex = carts.findIndex(cart => cart.id === cid);
-            if(cartIndex === -1){
-                console.log('Cart not found');
-            }
-            const productIndex = carts[cartIndex].products.findIndex(product => product.id === id);
-            if (productIndex === -1) {
-                carts[cartIndex].products.push({
-                    id:id, quantity: 1
-                })
-            } else {
-                carts[cartIndex].products[productIndex].quantity++
-            }
-            await this.updateCarts();
-       
+    async addProductsToCartS(cid, id){
+        await this.loadCarts()
+        const cartExist = this.carts.find(cart=> cart.id === cid);
+        if(!cartExist){
+            console.log("EL CARRITO NO EXISTE");
+        }
+        const productExist = await productAll.getProductById(id);
+        if (!productExist){
+            console.log("EL PRODUCTO NO EXISTE");
+        }
+         
+    /////////////////////////////
+    
     } 
 }
 
