@@ -53,7 +53,11 @@ const productsAll = new ProductManager("src/ProductManager.js")
         const cid = req.params.cid
         const id = req.params.pid
         const addToCart = await cartManager.addProductsToCartS(cid,id)
-      
+        res.status(200).json({
+            status:"Success",
+            msg:"Product add to cart",
+            data: addToCart
+        })
     } catch (error) {
         console.log("Error al agregar product al cart", error); 
     }
