@@ -66,6 +66,11 @@ export default class ProductManager {
        
     }
 
+    exist = async (id) => {
+        await this.loadDB();
+        return this.products.find(prod => prod.id === id)
+    }
+
 
     async getProductById(id){
         await this.loadDB()

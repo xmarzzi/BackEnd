@@ -1,0 +1,21 @@
+{
+    "idCart": "ababbsfbkfv12343654",
+    "products": [
+        {
+            "idProduct": 1234,
+            "quantity": 1
+        },
+        {
+            "idProduct": 123455,
+            "quantity": 1
+        },
+        {
+            "idProduct": 1234566,
+            "quantity": 2
+        },
+        {
+            "idProduct": 12345677,
+            "quantity": 3
+        }
+    ]
+}

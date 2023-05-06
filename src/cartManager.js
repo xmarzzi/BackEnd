@@ -32,13 +32,16 @@ export default class CartManager{
         }
     }
 
-    async addCart({products=[]}){
+    async addCart(products){
         await this.loadCarts()
         this.idAutoInc++
         if (products) {
             this.carts.push({
                 id:this.idAutoInc,
-                products:products
+                products:[{
+                    idProduct:"",
+                    quantity:""
+                }]
             })   
             await this.updateCarts();
         } else {
@@ -69,13 +72,14 @@ export default class CartManager{
 
     async addProductsToCarts(cid, id){
         await this.loadCarts()
-        const cartExist = this.carts.find(cart=> cart.id === cid);
-        if(!cartExist){
-            console.log("EL CARRITO NO EXISTE");
-        }
+        // const cartExist = await this.getCartId(cid);
         const productExist = await productAll.getProductById(id);
-        if (!productExist){
-            console.log("EL PRODUCTO NO EXISTE");
+        if(!productExist){
+            return("EL PRODUCTO NO EXISTE");
+        // } else if (){
+        //     return("EL PRODUCTO NO EXISTE");
+        }else{
+            return("ALGO PASO");
         }
          
     /////////////////////////////
