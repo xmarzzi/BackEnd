@@ -67,7 +67,7 @@ export default class CartManager{
         }
     }
 
-    async addProductsToCartS(cid, id){
+    async addProductsToCarts(cid, id){
         await this.loadCarts()
         const cartExist = this.carts.find(cart=> cart.id === cid);
         if(!cartExist){
