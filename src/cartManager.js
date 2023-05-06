@@ -32,13 +32,13 @@ export default class CartManager{
         }
     }
 
-    async addCart({products=[]}){
+    async addCart(products){
         await this.loadCarts()
         this.idAutoInc++
         if (products) {
             this.carts.push({
                 id:this.idAutoInc,
-                products:products
+                products: [{id:"", quantity:""}]
             })   
             await this.updateCarts();
         } else {
@@ -67,8 +67,23 @@ export default class CartManager{
         }
     }
 
-    async addProductsToCartS(cid, id){
+    async addProductsToCarts(cid, id){
         
+            let carts = await this.getCarts();
+            const cartIndex = carts.findIndex(cart => cart.id === cid);
+            if(cartIndex === -1){
+                console.log('Cart not found');
+            }
+            const productIndex = carts[cartIndex].products.findIndex(product => product.id === id);
+            if (productIndex === -1) {
+                carts[cartIndex].products.push({
+                    id:id, quantity: 1
+                })
+            } else {
+                carts[cartIndex].products[productIndex].quantity++
+            }
+            await this.updateCarts();
+       
     } 
 }
 
