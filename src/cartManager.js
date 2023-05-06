@@ -1,12 +1,12 @@
 import fs from "fs";
 import ProductManager from "./productManager.js";
 
-const productAll = new ProductManager
+const productAll = new ProductManager("src/DB/products.json")
 
-if (!fs.existsSync ("carts.json")){
-    fs.writeFileSync("carts.json", "[]")
+
+if (!fs.existsSync ("src/DB/carts.json")){
+    fs.writeFileSync("src/DB/carts.json", "[]")
 };
-
 export default class CartManager{
     constructor(path) {
         this.carts = [];
@@ -15,6 +15,7 @@ export default class CartManager{
     }
     async loadCarts(){
         try {
+
             this.carts = JSON.parse(fs.readFileSync(this.path))
             if(this.carts.length>0){
                 this.idAutoInc=this.carts[this.carts.length-1].id
@@ -38,10 +39,7 @@ export default class CartManager{
         if (products) {
             this.carts.push({
                 id:this.idAutoInc,
-                products:[{
-                    idProduct:"",
-                    quantity:""
-                }]
+                products:[]
             })   
             await this.updateCarts();
         } else {
@@ -66,20 +64,40 @@ export default class CartManager{
         if(cartExist){
             return cartExist
         }else{
-            return `Failed to get Cart, Cart ${cid} was not found`;
+            console.log(`Failed to get Cart, Cart ${cid} was not found`);
         }
     }
 
     async addProductsToCarts(cid, id){
         await this.loadCarts()
-        // const cartExist = await this.getCartId(cid);
+        const indexCart = this.carts.findIndex(cart => cart.id == cid)
+        const cartExist = await this.getCartId(cid);
+        // console.log("carrito", cartExist);
         const productExist = await productAll.getProductById(id);
-        if(!productExist){
+        if(!cartExist){
+            return("EL CARRITO NO EXISTE");
+        } else if (!productExist){
             return("EL PRODUCTO NO EXISTE");
-        // } else if (){
-        //     return("EL PRODUCTO NO EXISTE");
         }else{
-            return("ALGO PASO");
+            // console.log(this.carts,"carrito");
+            const productInCart = cartExist.products.findIndex(prod => prod.idProduct == id)
+            //const productIndex = cartExist.products.findIndex(prod => prod.idProduct == id)
+            // console.log(productIndex);
+            if (productInCart === -1) {
+
+                cartExist.products.push({
+                    idProduct: id,
+                    quantity: 1
+                })
+                this.carts[indexCart] = cartExist
+            await this.updateCarts()
+            }else{
+                cartExist.products[productInCart].quantity++
+                this.carts[indexCart] = cartExist
+                await this.updateCarts()
+                // productInCart.quantity++
+            }
+            
         }
          
     /////////////////////////////

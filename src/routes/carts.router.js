@@ -2,7 +2,7 @@ import { Router } from "express";
 import CartManager from "../cartManager.js";
 export const cartsRouter = Router();
 
-const cartManager = new CartManager ("src/carts.json");
+const cartManager = new CartManager ("src/DB/carts.json");
 
 
  cartsRouter.post("/", async (req, res)=> {
@@ -52,11 +52,22 @@ const cartManager = new CartManager ("src/carts.json");
         const cid = req.params.cid
         const id = req.params.pid
         const addToCart = await cartManager.addProductsToCarts(cid,id)
-        res.status(200).json({
-            status:"Success",
-            msg:"Product add to cart",
-            data: addToCart
+        // console.log(addToCart);
+        if(!addToCart){
+
+            res.status(200).json({
+                status:"Success",
+                msg:"Product add to cart",
+                data: addToCart
+            })
+
+        }
+        return res.status(400).json({
+            status:"Error",
+            msg:addToCart
+            
         })
+
     } catch (error) {
         console.log("Error al agregar product al cart", error); 
     }

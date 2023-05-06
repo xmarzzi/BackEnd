@@ -1,7 +1,7 @@
 import fs from "fs";
 
-if (!fs.existsSync("products.json")) {
-        fs.writeFileSync("products.json", "[]");
+if (!fs.existsSync("src/DB/products.json")) {
+        fs.writeFileSync("src/DB/products.json", "[]");
     }
   
 export default class ProductManager {
@@ -66,10 +66,10 @@ export default class ProductManager {
        
     }
 
-    exist = async (id) => {
-        await this.loadDB();
-        return this.products.find(prod => prod.id === id)
-    }
+    // exist = async (id) => {
+    //     await this.loadDB();
+    //     return this.products.find(prod => prod.id === id)
+    // }
 
 
     async getProductById(id){
@@ -78,7 +78,7 @@ export default class ProductManager {
         if(productIfExists){
             return productIfExists
         }else{
-            return `Failed to get Product, Product ${id} was not found`;
+            console.log(`Failed to get Product, Product ${id} was not found`);
         }
     }
 
