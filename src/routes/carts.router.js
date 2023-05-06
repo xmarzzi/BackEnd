@@ -48,7 +48,7 @@ const productsAll = new ProductManager("src/ProductManager.js")
      }
  })
 
- cartsRouter.post("/:cid/products/pid", async (req, res) => {
+ cartsRouter.post("/:cid/products/:pid", async (req, res) => {
     try {
         const cid = req.params.cid
         const id = req.params.pid
