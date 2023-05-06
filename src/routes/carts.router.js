@@ -48,4 +48,13 @@ const productsAll = new ProductManager("src/ProductManager.js")
      }
  })
 
- cartsRouter.post("/:cid/products/pid", async (req, res) => {})
+ cartsRouter.post("/:cid/products/pid", async (req, res) => {
+    try {
+        const cid = req.params.cid
+        const id = req.params.pid
+        const addToCart = await cartManager.addProductsToCartS(cid,id)
+      
+    } catch (error) {
+        console.log("Error al agregar product al cart", error); 
+    }
+ })
