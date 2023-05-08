@@ -82,7 +82,7 @@ productsRouter.put("/:pid", async (req, res) => {
             if (!update) {
                 return res.status(200).json({
                     status:"Success",
-                    msg:"Producto agregado",
+                    msg:"Modified product",
                     data:modific
                 });
             }else{
@@ -92,7 +92,7 @@ productsRouter.put("/:pid", async (req, res) => {
                 });
             }
         } catch (error) {
-            console.log("Error en agregar producto", error)
+            console.log("Error", error)
         }
         
 });
@@ -100,10 +100,17 @@ productsRouter.put("/:pid", async (req, res) => {
 productsRouter.delete("/:pid", async (req, res) => {
     const id = req.params.pid;
     const product = await manager.getProductById(id)
-     await manager.deleteProduct(id)
-    return res.status(200).json({
-        status:"Sucess",
-        msg:`El producto con id ${id} fué eliminado exitosamente`,
-        data: product
-    });
+    if (!product) {
+        return res.status(400).json({
+            status:"Error",
+            msg:"Product does not exist"
+        });
+    } else {
+        await manager.deleteProduct(id)
+        return res.status(200).json({
+            status:"Sucess",
+            msg:`The product with ID: ${id} was deleted`,
+            data: product
+        });
+    }
 })

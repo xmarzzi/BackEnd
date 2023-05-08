@@ -35,6 +35,7 @@ export default class ProductManager {
         await this.loadDB()
         this.idAutoInc++
         const repeatedProduct = this.products.some(item => item.code === code)
+        console.log(repeatedProduct);
         if(repeatedProduct === false && title && description && code && price && stock && category || thumbnails){
             this.products.push({
                 id:this.idAutoInc,
@@ -49,7 +50,6 @@ export default class ProductManager {
 
             })
             await this.updateDB()
-            
 
         }else{
             return "Error, duplicated product, or invalid parameters";
@@ -65,12 +65,6 @@ export default class ProductManager {
         }
        
     }
-
-    // exist = async (id) => {
-    //     await this.loadDB();
-    //     return this.products.find(prod => prod.id === id)
-    // }
-
 
     async getProductById(id){
         await this.loadDB()

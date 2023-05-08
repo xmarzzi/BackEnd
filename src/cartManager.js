@@ -1,5 +1,6 @@
 import fs from "fs";
 import ProductManager from "./productManager.js";
+import uuid4 from "uuid4";
 
 const productAll = new ProductManager("src/DB/products.json")
 
@@ -11,15 +12,10 @@ export default class CartManager{
     constructor(path) {
         this.carts = [];
         this.path = path
-        this.idAutoInc = -1
     }
     async loadCarts(){
         try {
-
             this.carts = JSON.parse(fs.readFileSync(this.path))
-            if(this.carts.length>0){
-                this.idAutoInc=this.carts[this.carts.length-1].id
-            }
         } catch (error) {
             console.log("Error carts loaded",error)
         }
@@ -35,10 +31,10 @@ export default class CartManager{
 
     async addCart(products){
         await this.loadCarts()
-        this.idAutoInc++
+        const id = uuid4();
         if (products) {
             this.carts.push({
-                id:this.idAutoInc,
+                id:id,
                 products:[]
             })   
             await this.updateCarts();
@@ -56,13 +52,11 @@ export default class CartManager{
         }
     }
 
-    
-
     async getCartId(cid){
         await this.loadCarts()
         const cartExist = this.carts.find(cart => cart.id == cid);
         if(cartExist){
-            return cartExist
+            return cartExist.products
         }else{
             console.log(`Failed to get Cart, Cart ${cid} was not found`);
         }
@@ -71,37 +65,28 @@ export default class CartManager{
     async addProductsToCarts(cid, id){
         await this.loadCarts()
         const indexCart = this.carts.findIndex(cart => cart.id == cid)
-        const cartExist = await this.getCartId(cid);
-        // console.log("carrito", cartExist);
+        const cartExist = this.carts.find(cart => cart.id == cid);;
         const productExist = await productAll.getProductById(id);
         if(!cartExist){
             return("EL CARRITO NO EXISTE");
         } else if (!productExist){
             return("EL PRODUCTO NO EXISTE");
         }else{
-            // console.log(this.carts,"carrito");
             const productInCart = cartExist.products.findIndex(prod => prod.idProduct == id)
-            //const productIndex = cartExist.products.findIndex(prod => prod.idProduct == id)
-            // console.log(productIndex);
             if (productInCart === -1) {
 
                 cartExist.products.push({
                     idProduct: id,
                     quantity: 1
                 })
-                this.carts[indexCart] = cartExist
+            this.carts[indexCart] = cartExist
             await this.updateCarts()
             }else{
                 cartExist.products[productInCart].quantity++
                 this.carts[indexCart] = cartExist
                 await this.updateCarts()
-                // productInCart.quantity++
             }
-            
         }
-         
-    /////////////////////////////
-    
     } 
 }
 

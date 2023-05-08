@@ -9,18 +9,7 @@ const cartManager = new CartManager ("src/DB/carts.json");
     try {
         const newCart = req.body;
         const addCart = await cartManager.addCart(newCart);
-        if (!addCart) {
-            return res.status(200).json({
-                status:"Success",
-                msg:"Cart creado",
-                data:newCart
-            });
-        } else {
-            return res.status(400).json({
-                status:"Error",
-                msg:addCart
-            })
-        }
+        !addCart ? res.status(200).json({status:"Success", msg:"Cart save", data:newCart}) : res.status(200).json({status:"Error", msg:addCart});
     } catch (error) {
         console.log("Error al agregar cart", error);
     }
@@ -30,44 +19,18 @@ const cartManager = new CartManager ("src/DB/carts.json");
      try {
         const id = req.params.cid
         const cartExist = await cartManager.getCartId(id)
-        if (cartExist) {
-            return res.status(200).json({
-                status:"Success",
-                msg:`Cart ${id} exist`,
-                data:cartExist
-            })
-        } else {
-            return res.status(400).json({
-                status:"Error",
-                msg:`Cart ${id} does not exist`
-            })
-        }
-     } catch (error) {
+        cartExist ? res.status(200).json({status:"Success", msg:`Cart ${id} exist`, data:cartExist}) : res.status(200).json({status:"Error", msg:`Cart ${id} does not exist`});
+    } catch (error) {
         console.log("Error en /carts/id", error)
-     }
- })
+    }
+})
 
- cartsRouter.post("/:cid/products/:pid", async (req, res) => {
+cartsRouter.post("/:cid/products/:pid", async (req, res) => {
     try {
         const cid = req.params.cid
         const id = req.params.pid
         const addToCart = await cartManager.addProductsToCarts(cid,id)
-        // console.log(addToCart);
-        if(!addToCart){
-
-            res.status(200).json({
-                status:"Success",
-                msg:"Product add to cart",
-                data: addToCart
-            })
-
-        }
-        return res.status(400).json({
-            status:"Error",
-            msg:addToCart
-            
-        })
-
+        !addToCart ? res.status(200).json({status:"Success", msg:"Product add to cart", data:addToCart}) : res.status(200).json({status:"Error", msg:addToCart});
     } catch (error) {
         console.log("Error al agregar product al cart", error); 
     }
