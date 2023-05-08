@@ -14,4 +14,4 @@ ___
 ## Descripción del Proyecto
 
 #### Para realizar esta primera preentrega se utilizó ___FileSystem___ para el manejo de archivos, ___Express___ para generar el servidor y ___UUID4___ el cual permite generar automáticamente Identificadores Únicos Universales (ID). 
-#### También fué utilizado ___Router___ de Express para realizar las rutas y los endpoints cumpliendo correspondientes a los productos y carritos.
+#### También fué utilizado ___Router___ de Express para realizar las rutas y los endpoints correspondientes a los productos y carritos.
