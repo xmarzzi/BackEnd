@@ -31,12 +31,12 @@ export default class ProductManager {
         }
     }
     
-    async addProduct({title,description,code,price,stock,category,thumbnails=[]}){
+    async addProduct({title,description,code,price,stock,category, thumbnails=[]}){
         await this.loadDB()
         this.idAutoInc++
         const repeatedProduct = this.products.some(item => item.code === code)
         console.log(repeatedProduct);
-        if(repeatedProduct === false && title && description && code && price && stock && category || thumbnails){
+        if(repeatedProduct === false && title && description && code && price && stock && category){
             this.products.push({
                 id:this.idAutoInc,
                 title: title,
@@ -47,9 +47,9 @@ export default class ProductManager {
                 stock:stock,
                 category:category,
                 thumbnails:thumbnails
-
             })
             await this.updateDB()
+            
 
         }else{
             return "Error, duplicated product, or invalid parameters";

@@ -11,7 +11,7 @@ const cartManager = new CartManager ("src/DB/carts.json");
         const addCart = await cartManager.addCart(newCart);
         !addCart ? res.status(200).json({status:"Success", msg:"Cart save", data:newCart}) : res.status(200).json({status:"Error", msg:addCart});
     } catch (error) {
-        console.log("Error al agregar cart", error);
+        console.log("Error add cart", error);
     }
  })
 
@@ -32,6 +32,6 @@ cartsRouter.post("/:cid/products/:pid", async (req, res) => {
         const addToCart = await cartManager.addProductsToCarts(cid,id)
         !addToCart ? res.status(200).json({status:"Success", msg:"Product add to cart", data:addToCart}) : res.status(200).json({status:"Error", msg:addToCart});
     } catch (error) {
-        console.log("Error al agregar product al cart", error); 
+        console.log("Error add product in cart", error); 
     }
  })

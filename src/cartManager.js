@@ -68,9 +68,9 @@ export default class CartManager{
         const cartExist = this.carts.find(cart => cart.id == cid);;
         const productExist = await productAll.getProductById(id);
         if(!cartExist){
-            return("EL CARRITO NO EXISTE");
+            return("Cart does not exist");
         } else if (!productExist){
-            return("EL PRODUCTO NO EXISTE");
+            return("Product does not exist");
         }else{
             const productInCart = cartExist.products.findIndex(prod => prod.idProduct == id)
             if (productInCart === -1) {

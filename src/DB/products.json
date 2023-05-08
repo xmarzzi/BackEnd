@@ -1,6 +1,20 @@
 [
   {
-    "id": 0,
+    "id": "1",
+    "title": "JOGGER ASFALTO BIG",
+    "description": "Todos los pantalones Hocks Skate son ajustables en la cintura mediante cordones de doble cara. Algo que ha sido adoptado por los patinadores desde la década de 2000 y continúa hasta el día de hoy.",
+    "code": "AS01",
+    "price": 7000,
+    "status": true,
+    "stock": 11,
+    "category": "Indumentary",
+    "thumbnails": [
+      "HK.jpg",
+      "AS.jpg"
+    ]
+  },
+  {
+    "id": 2,
     "title": "HOKS JEANS TEMPO REGULAR",
     "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
     "code": "hk01",
@@ -11,52 +25,91 @@
     "thumbnails": []
   },
   {
-    "id": 1,
-    "title": "HOKS JEANS TEMPO REGULAR",
-    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
-    "status": true,
-    "thumbnails": []
-  },
-  {
-    "id": 2,
-    "title": "HOKS JEANS TEMPO REGULAR",
-    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
-    "status": true,
-    "thumbnails": []
-  },
-  {
     "id": 3,
-    "title": "HOKS JEANS TEMPO REGULAR",
-    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
+    "title": "SPITFIRE HOODIE BIGHEAD",
+    "description": "Hoddie color naranja, con estampa al frente.",
+    "code": "2Hoddie",
+    "price": 10000,
     "status": true,
-    "thumbnails": []
+    "stock": 5,
+    "category": "Indumentary",
+    "thumbnails": "spitfire.jpg"
   },
   {
     "id": 4,
-    "title": "HOKS JEANS TEMPO REGULAR",
-    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
+    "title": "TABLA CREATURE GRAPHIC MONSTER MOBILE 8",
+    "description": "Tabla Creature",
+    "code": "21Deck",
+    "price": 21300,
     "status": true,
-    "thumbnails": []
+    "stock": 9,
+    "category": "Deck Skate",
+    "thumbnails": "creature.jpg"
   },
   {
     "id": 5,
-    "title": "HOKS JEANS TEMPO REGULAR",
-    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
+    "title": "VANS X THE SIMPSONS",
+    "description": "Colaboración con Simpsons",
+    "code": "34VaS",
+    "price": 25000,
     "status": true,
-    "thumbnails": []
+    "stock": 8,
+    "category": "Shoes",
+    "thumbnails": "vanSimp.jpg"
   },
   {
     "id": 6,
-    "title": "HOKS JEANS TEMPO REGULAR",
-    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
+    "title": "PANTALÓN NEW BALANCE UNISSENTIAL SWEA",
+    "description": "Ofrece una expresión sin género del estilo clásico de esta marca.",
+    "code": "35NBPants",
+    "price": 15200,
     "status": true,
-    "thumbnails": []
+    "stock": 10,
+    "category": "Indumentary",
+    "thumbnails": "NewBalancePants.jpg"
   },
   {
     "id": 7,
-    "title": "HOKS JEANS TEMPO REGULAR",
-    "description": "Los pantalones Hocks siguen estrictamente el estilo de los que viven el auténtico Skate. La marca se preocupa por traer piezas de corte recto, las denominadas Large.",
+    "title": "NIKE AIR FORCE",
+    "description": "blanca",
+    "code": "31AirF",
+    "price": 30000,
     "status": true,
+    "stock": 12,
+    "category": "Shoes",
+    "thumbnails": "Nike.jpg"
+  },
+  {
+    "id": 8,
+    "title": "VANS OLD SCHOOL",
+    "description": "Un clásico",
+    "code": "32Va",
+    "price": 23000,
+    "status": true,
+    "stock": 20,
+    "category": "Shoes",
+    "thumbnails": "VANS.jpg"
+  },
+  {
+    "id": 9,
+    "title": "VANS X NatGeo",
+    "description": "Colaboración con NatGeo",
+    "code": "33VaNG",
+    "price": 20000,
+    "status": true,
+    "stock": 7,
+    "category": "Shoes",
+    "thumbnails": "vansNatGeo.jpg"
+  },
+  {
+    "id": 10,
+    "title": "DECK CLEAVER MARTINEZ KEYS BLANCO",
+    "description": "Tabla skate Cleaver",
+    "code": "22Deck",
+    "price": 18200,
+    "status": true,
+    "stock": 12,
+    "category": "Deck Skate",
     "thumbnails": []
   }
 ]
