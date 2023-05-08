@@ -65,7 +65,7 @@ export default class CartManager{
     async addProductsToCarts(cid, id){
         await this.loadCarts()
         const indexCart = this.carts.findIndex(cart => cart.id == cid)
-        const cartExist = this.carts.find(cart => cart.id == cid);;
+        const cartExist = this.carts.find(cart => cart.id == cid);
         const productExist = await productAll.getProductById(id);
         if(!cartExist){
             return("Cart does not exist");
