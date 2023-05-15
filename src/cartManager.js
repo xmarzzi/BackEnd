@@ -74,7 +74,6 @@ export default class CartManager{
         }else{
             const productInCart = cartExist.products.findIndex(prod => prod.idProduct == id)
             if (productInCart === -1) {
-
                 cartExist.products.push({
                     idProduct: id,
                     quantity: 1
@@ -88,6 +87,21 @@ export default class CartManager{
             }
         }
     } 
+    async removeProductFromCart(cid, pid){
+        await this.loadCarts()
+        const indexCart = this.carts.findIndex(cart=> cart.id == cid)
+        const indexProduct = this.carts[indexCart].findIndex(product=> product.product == pid)
+        if(indexCart){
+            if(indexProduct !== -1){
+                this.carts[indexCart].products.splice(indexProduct,index+1)
+                await this.updateCarts()
+            }else{
+                return `Failed to Delete Product, Product ${pid} was not found`
+            }
+        }else{ 
+            return `Failed to Delete Product, cart ${cid} was not found`
+        }
+    }
 }
 
 

@@ -35,3 +35,13 @@ cartsRouter.post("/:cid/products/:pid", async (req, res) => {
         console.log("Error add product in cart", error); 
     }
  })
+cartsRouter.delete("/:cid/products/:pid", async (req, res) => {
+    try {
+        const cid = req.params.cid
+        const pid = req.params.pid
+        const deleteProd = await cartManager.removeProductFromCart(cid,pid)
+        !deleteProd ? res.status(200).json({status:"Success", msg:"Product add to cart", data:deleteProd}) : res.status(200).json({status:"Error", msg:deleteProd});
+    } catch (error) {
+        console.log("Error delete product", error); 
+    }
+ })

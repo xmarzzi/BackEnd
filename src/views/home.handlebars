@@ -1,0 +1,17 @@
+<div class="principal" >
+<h1 class="title">Lista de Productos</h1>
+  {{#each data}}
+  <div class="container">
+  <ul class="lista">
+    <li>ID: {{id}}</li>  
+    <li class="titleList">Nombre: {{title}}</li>
+    <li>Descripción: {{description}}</li>
+    <li>Código de producto: {{code}}</li>
+    <li>Precio: {{price}}</li>
+    <li>Stock: {{stock}}</li>
+    <li>Categoría: {{category}}</li>
+    <li>Img: {{thumbnails}}</li>
+  </ul>
+  </div>
+  {{/each}}
+</div>

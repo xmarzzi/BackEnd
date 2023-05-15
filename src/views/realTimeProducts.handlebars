@@ -1,0 +1,39 @@
+<h1 class="title">FORMULARIO PARA INGRESAR PRODUCTOS</h1>
+<div class="form" id="output">
+        <form action="producto" method="post" id="form">
+        <label for="title">Nombre del producto</label>
+        <input type="text" name="title" id="title">
+        <label for="description">Descripción</label>
+        <input type="text" name="description" id="description">
+        <label for="code">Código del producto</label>
+        <input type="text" name="code" id="code">
+        <label for="price">Precio</label>
+        <input type="number" name="price" id="price">
+        <label for="stock">Stock</label>
+        <input type="number" name="stock" id="stock">
+        <label for="category">Categoría</label>
+        <input type="text" name="category" id="category">
+        <label for="thumbnails">Suba una imágen del producto</label>
+        <input type="file" name="thumbnails" id="thumbnails">
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+<div>
+<h2 class="title">Lista de Productos</h2>
+  {{#each data}}
+  <div class="container" id="list">
+  <ul>
+    <li>ID: {{id}}</li>  
+    <li class="titleList">Nombre: {{title}}</li>
+    <li>Descripción: {{description}}</li>
+    <li>Código de producto: {{code}}</li>
+    <li>Precio: {{price}}</li>
+    <li>Stock: {{stock}}</li>
+    <li>Categoría: {{category}}</li>
+    <li>Img: {{thumbnails}}</li>
+  </ul>
+  </div>
+  {{/each}}
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js"></script>

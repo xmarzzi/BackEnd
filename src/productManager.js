@@ -31,7 +31,7 @@ export default class ProductManager {
         }
     }
     
-    async addProduct({title,description,code,price,stock,category, thumbnails=[]}){
+    async addProduct({title,description,code,price,stock,category, thumbnails}){
         await this.loadDB()
         this.idAutoInc++
         const repeatedProduct = this.products.some(item => item.code === code)
