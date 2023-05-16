@@ -24,3 +24,22 @@ form.addEventListener('submit', e => {
    
 
 });
+
+socket.on("msg_back_to_sockets", (data) => {
+    console.log("hola",data);
+    data.forEach((prod) => {
+      data += "<div>";  
+      data += "<li>" + prod.title + "</li>";  
+      data += "<li>" + prod.description + "</li>";  
+      data += "<li>" + prod.code + "</li>";  
+      data += "<li>" + prod.price + "</li>";  
+      data += "<li>" + prod.stock + "</li>";  
+      data += "<li>" + prod.category + "</li>";  
+      data += "<li>" + prod.thumbnails + "</li>";  
+    
+      data += "</div>";  
+    });
+
+    const divProd = document.getElementById("addproduct");
+    divProd.innerHTML = data;
+})

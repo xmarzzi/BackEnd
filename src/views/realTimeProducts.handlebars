@@ -20,20 +20,7 @@
 </div>
 <div>
 <h2 class="title">Lista de Productos</h2>
-  {{#each data}}
-  <div class="container" id="list">
-  <ul>
-    <li>ID: {{id}}</li>  
-    <li class="titleList">Nombre: {{title}}</li>
-    <li>Descripción: {{description}}</li>
-    <li>Código de producto: {{code}}</li>
-    <li>Precio: {{price}}</li>
-    <li>Stock: {{stock}}</li>
-    <li>Categoría: {{category}}</li>
-    <li>Img: {{thumbnails}}</li>
-  </ul>
-  </div>
-  {{/each}}
-</div>
+<div id="addproduct"></div>
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/main.js"></script>

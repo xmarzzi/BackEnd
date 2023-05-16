@@ -14,7 +14,7 @@ const PORT = 8080;
 const httpServer = app.listen(PORT, () => {
    console.log(`Example app listening on http://localhost:${PORT}`)
  });
- const socketServer = new Server(httpServer);
+const io = new Server(httpServer);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,13 +39,15 @@ app.use('/realtimeproducts', realTimeRouter)
 //CONECTANDO SOCKET
 const manager = new ProductManager("src/DB/products.json");
 
-socketServer.on('connection', (socket) => {
+io.on('connection', (socket) => {
   console.log('Se abrió un canal de socket' + socket.id);
 
-  socket.on('client:new_product', (data) => {
-      // console.log(data);
-    manager.addProduct(data);
-  })
+  socket.on('client:new_product', async  (data) => {
+      //  console.log(data);
+       await manager.addProduct(data);
+       const products = await manager.getProducts();
+       io.emit("msg_back_to_sockets", (products) )
+    });
 
   socket.on('disconnect', () => {
     console.log('User was disconnected');
