@@ -35,7 +35,7 @@ export default class ProductManager {
         await this.loadDB()
         this.idAutoInc++
         const repeatedProduct = this.products.some(item => item.code === code)
-        console.log(repeatedProduct);
+        // console.log(repeatedProduct);
         if(repeatedProduct === false && title && description && code && price && stock && category){
             this.products.push({
                 id:this.idAutoInc,

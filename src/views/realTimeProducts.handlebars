@@ -1,6 +1,10 @@
-<h1 class="title">FORMULARIO PARA INGRESAR PRODUCTOS</h1>
-<div class="form" id="output">
-        <form action="producto" method="post" id="form">
+<section class="section">
+
+
+
+<h1 class="titleForm">FORMULARIO PARA INGRESAR PRODUCTOS</h1>
+<article class="formulario" id="output">
+        <form action="producto" method="post" id="form" class="formProduct">
         <label for="title">Nombre del producto</label>
         <input type="text" name="title" id="title">
         <label for="description">Descripción</label>
@@ -15,12 +19,17 @@
         <input type="text" name="category" id="category">
         <label for="thumbnails">Suba una imágen del producto</label>
         <input type="file" name="thumbnails" id="thumbnails">
-        <button type="submit">Guardar</button>
+        <div class="contenedor"> <button type="submit"  class="btn">Guardar</button></div>
+        <div class="contenedor"> <button type="submit" class="btn">Visualizar lista de productos</button></div>
+        
     </form>
-</div>
-<div>
-<h2 class="title">Lista de Productos</h2>
-<div id="addproduct"></div>
+</article>
+<article class="articleProducts">
+
+ <h2 class="title-2">Lista de Productos</h2>
+<div id="addproduct" class="d-flex flex-wrap "></div>
+</article>
+</section>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/main.js"></script>
