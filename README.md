@@ -13,5 +13,16 @@ ___
 
 ## Descripción del Proyecto
 
+### A través de npm fueron instaladas las librerias de:
+- FileSystem
+- Express
+- UUID4
+- Router
+- Handlebars
+- Bootstrap
+
+
 #### Para realizar esta primera preentrega se utilizó ___FileSystem___ para el manejo de archivos, ___Express___ para generar el servidor y ___UUID4___ el cual permite generar automáticamente Identificadores Únicos Universales (ID). 
 #### También fué utilizado ___Router___ de Express para realizar las rutas y los endpoints correspondientes a los productos y carritos.
+#### Se utilizó el motor de plantillas de __Handlebars__.
+#### Para realizar los estilos se utilizó __BootStrap__ y __Sass__.

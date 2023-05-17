@@ -8,7 +8,7 @@
     "status": true,
     "stock": 10,
     "category": "Indumentary",
-    "thumbnails": []
+    "thumbnails": "https://images.tcdn.com.br/img/img_prod/775752/calca_hocks_jeans_tempo_regular_4085_1_f5a6c547273539429080f5272f75290a.jpg"
   },
   {
     "id": 3,
@@ -19,7 +19,7 @@
     "status": true,
     "stock": 5,
     "category": "Indumentary",
-    "thumbnails": "spitfire.jpg"
+    "thumbnails": "https://dtskateboarding.vtexassets.com/arquivos/ids/161097-800-auto?v=638133702122470000&width=800&height=auto&aspect=true"
   },
   {
     "id": 4,
@@ -30,7 +30,7 @@
     "status": true,
     "stock": 9,
     "category": "Deck Skate",
-    "thumbnails": "creature.jpg"
+    "thumbnails": "https://dtskateboarding.vtexassets.com/arquivos/ids/160516-800-auto?v=638007519038830000&width=800&height=auto&aspect=true"
   },
   {
     "id": 5,
@@ -41,7 +41,7 @@
     "status": true,
     "stock": 8,
     "category": "Shoes",
-    "thumbnails": "vanSimp.jpg"
+    "thumbnails": "https://cdn-images.farfetch-contents.com/15/94/96/20/15949620_30950103_1000.jpg"
   },
   {
     "id": 6,
@@ -52,7 +52,7 @@
     "status": true,
     "stock": 10,
     "category": "Indumentary",
-    "thumbnails": "NewBalancePants.jpg"
+    "thumbnails": "https://img01.ztat.net/article/spp-media-p1/c723a6f1de0346dd976c5d43c56d07c8/e72dd3597d22400698919565623f8442.jpg?imwidth=762"
   },
   {
     "id": 7,
@@ -63,18 +63,7 @@
     "status": true,
     "stock": 12,
     "category": "Shoes",
-    "thumbnails": "Nike.jpg"
-  },
-  {
-    "id": 8,
-    "title": "VANS OLD SCHOOL",
-    "description": "Un clásico",
-    "code": "32Va",
-    "price": 23000,
-    "status": true,
-    "stock": 20,
-    "category": "Shoes",
-    "thumbnails": "VANS.jpg"
+    "thumbnails": "https://www.innvictus.com/medias/IN-CW2288-111-1.png?context=bWFzdGVyfGltYWdlc3w3NTUyMnxpbWFnZS9wbmd8aW1hZ2VzL2g4Zi9oM2QvOTk4MjE0ODkzNTcxMC5wbmd8MTIwMzc1NjM3NTc3ZjUyOGNkZDcyYjIwMDU0ODViOGIzN2NkNGY3ZDYyZWIzYWE1MTg2YjQ0MWJlOTQwODI0Mw"
   },
   {
     "id": 9,
@@ -85,7 +74,7 @@
     "status": true,
     "stock": 7,
     "category": "Shoes",
-    "thumbnails": "vansNatGeo.jpg"
+    "thumbnails": "https://http2.mlstatic.com/D_NQ_NP_714719-MLM43745650000_102020-O.webp"
   },
   {
     "id": 10,
@@ -96,18 +85,18 @@
     "status": true,
     "stock": 12,
     "category": "Deck Skate",
-    "thumbnails": []
+    "thumbnails": "https://dtskateboarding.vtexassets.com/arquivos/ids/160701-800-auto?v=638026616837330000&width=800&height=auto&aspect=true"
   },
   {
     "id": 11,
-    "title": "DC ZAPATILLA STRIKER",
-    "description": "Shoes color beige.",
-    "code": "1DCshoe",
+    "title": "HOCKS POP LITE PANTERA",
+    "description": "Shoes color negro.",
+    "code": "1HKshoe",
     "price": 35000,
     "status": true,
     "stock": 10,
     "category": "Shoes",
-    "thumbnails": "dc01.jpg"
+    "thumbnails": "https://images.tcdn.com.br/img/img_prod/775752/tenis_hocks_pop_lite_pantera_2105_1_03ba50d281057f9ab54fe63e8041364c.jpg"
   },
   {
     "id": 12,
@@ -118,6 +107,6 @@
     "status": true,
     "stock": "7",
     "category": "Accesories",
-    "thumbnails": "C:\\fakepath\\skateQuarters.jpg"
+    "thumbnails": "./uploads/skateQuarters.jpg"
   }
 ]

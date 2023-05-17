@@ -37,16 +37,15 @@ app.use('/realtimeproducts', realTimeRouter)
 
 
 //CONECTANDO SOCKET
-const manager = new ProductManager("src/DB/products.json");
 
 io.on('connection', (socket) => {
   console.log('Se abrió un canal de socket' + socket.id);
-
-  socket.on('client:new_product', async(data) => {
-      //  console.log(data);
-       await manager.addProduct(data);
-       const products = await manager.getProducts();
-       io.emit("msg_back_to_sockets", products )
+  
+  // add product to the list
+  socket.on('client:new_product', async(req,res) => {
+      const manager = new ProductManager("src/DB/products.json");
+       await manager.addProduct(req);
+       io.emit("msg_back_to_sockets", req )
     });
 
   socket.on('disconnect', () => {

@@ -1,33 +1,47 @@
 <section class="section">
 
-
-
 <h1 class="titleForm">FORMULARIO PARA INGRESAR PRODUCTOS</h1>
-<article class="formulario" id="output">
-        <form action="producto" method="post" id="form" class="formProduct">
+<div class="formulario" id="output">
+        <form action="producto" method="post" id="form" class="formProduct" required>
         <label for="title">Nombre del producto</label>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" required>
         <label for="description">Descripción</label>
-        <input type="text" name="description" id="description">
+        <input type="text" name="description" id="description" required>
         <label for="code">Código del producto</label>
-        <input type="text" name="code" id="code">
+        <input type="text" name="code" id="code" required>
         <label for="price">Precio</label>
-        <input type="number" name="price" id="price">
+        <input type="number" name="price" id="price" required>
         <label for="stock">Stock</label>
-        <input type="number" name="stock" id="stock">
+        <input type="number" name="stock" id="stock" required>
         <label for="category">Categoría</label>
-        <input type="text" name="category" id="category">
+        <input type="text" name="category" id="category" required>
         <label for="thumbnails">Suba una imágen del producto</label>
         <input type="file" name="thumbnails" id="thumbnails">
         <div class="contenedor"> <button type="submit"  class="btn">Guardar</button></div>
-        <div class="contenedor"> <button type="submit" class="btn">Visualizar lista de productos</button></div>
         
     </form>
-</article>
+</div>
 <article class="articleProducts">
 
  <h2 class="title-2">Lista de Productos</h2>
-<div id="addproduct" class="d-flex flex-wrap "></div>
+{{!-- <div id="addproduct" class=""> --}}
+  {{#if data}}
+    <div class="products-container" id="addproduct">
+    {{#each data}}
+      <div class="card" style="width: 18rem;">
+     <img src={{thumbnails}} class="card-img-top img" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <p class="card-text">{{description}}</p>
+          <p class="card-text">${{price}}</p>
+        </div>
+      </div>
+    {{/each}}
+    </div>
+  {{else}}
+    No hay productos
+  {{/if}}
+</div>
 </article>
 </section>
 

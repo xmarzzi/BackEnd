@@ -9,6 +9,7 @@ const stock = document.querySelector('#stock');
 const category  = document.querySelector('#category');
 const thumbnails = document.querySelector('#thumbnails');
 
+// Enviando data al socket desde el front
 form.addEventListener('submit', e => {
     e.preventDefault();
      
@@ -21,26 +22,29 @@ form.addEventListener('submit', e => {
             category: category.value,
             thumbnails: thumbnails.value
         } )
-   
+        form.reset();
+        alert('El producto ha sido agregado correctamente'); 
 
 });
 
+
+//Recibiendo data desde el socket
 socket.on("msg_back_to_sockets", (data) => {
-    // console.log("hola",data);
-    data.forEach(prod => {
-      
-        data += "<div class='card '  style='width: 18rem;'>";   
-        data += "<div class='card-body''>";   
-        data += "<h2 class='card.title'>"+ prod.title + "</h2>";  
-        data += "<p class='card.text'> Descripción:" + prod.description + "</p>";   
-        data += "<p class='card.text'> Precio:" + prod.price + "</p>";   
-        data += "<p class='card.text'> Precio:" + prod.price + "</p>";   
-        data += "<buttom  class='btn btn-primary' onclick='eliminar'> Eliminar" +"</buttom>";    
-        data += "</div>";  
-       
-       
+  
+        console.log(data)
+        const newProduct = `
+        <div class="card" style="width: 18rem;">
+        <img src=${data.thumbnails} class="card-img-top img" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">${data.title}</h5>
+          <p class="card-text">${data.description}</p>
+          <p class="card-text">$${data.price}</p>
+        </div>
+      </div>
+        `;
+        document.getElementById("addproduct").innerHTML += newProduct;
       
     });
+    
 
-    document.getElementById('addproduct').innerHTML = data;
-})
+  

@@ -72,4 +72,23 @@
   justify-content: center;
   color: #fff;
   -webkit-text-stroke: 1px black;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5%;
+}
+.products-container .card {
+  display: flex;
+  margin: 10px;
+}
+
+.img {
+  width: 18rem;
 }/*# sourceMappingURL=main.css.map */
