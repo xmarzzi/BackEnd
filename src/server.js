@@ -40,13 +40,22 @@ app.use('/realtimeproducts', realTimeRouter)
 
 io.on('connection', (socket) => {
   console.log('Se abrió un canal de socket' + socket.id);
+  const manager = new ProductManager("src/DB/products.json");
   
   // add product to the list
   socket.on('client:new_product', async(req,res) => {
-      const manager = new ProductManager("src/DB/products.json");
        await manager.addProduct(req);
        io.emit("msg_back_to_sockets", req )
     });
+
+  socket.on("client:deleteproduct", async (req,res) => {
+    console.log(req);
+    await manager.deleteProduct(req)
+    const products = await manager.getProducts();
+     // Emitir un evento a todos los clientes conectados con la lista de productos actualizada
+     io.emit('server:updateproducts', products)
+    
+  })
 
   socket.on('disconnect', () => {
     console.log('User was disconnected');

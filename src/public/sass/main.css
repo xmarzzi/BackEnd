@@ -56,7 +56,9 @@
   font-size: 1rem;
   margin: 5% 15%;
   color: black;
+  border: 2px solid;
   border-radius: 5px;
+  border-color: #FF1493;
 }
 
 .btn:hover {

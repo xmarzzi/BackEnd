@@ -39,6 +39,7 @@ socket.on("msg_back_to_sockets", (data) => {
           <h5 class="card-title">${data.title}</h5>
           <p class="card-text">${data.description}</p>
           <p class="card-text">$${data.price}</p>
+          <buttom class="btn "onclick="deleteproduct ('${data.id}')">Delete</buttom>
         </div>
       </div>
         `;
@@ -47,4 +48,14 @@ socket.on("msg_back_to_sockets", (data) => {
     });
     
 
-  
+    function deleteproduct(id) {
+      socket.emit("client:deleteproduct", id)
+    }
+    
+    // Evento que se activa cuando se recibe la lista de productos actualizada
+    socket.on('server:updateproducts', (products) => {
+      // Recargar la página
+      location.reload();
+    });
+
+ 
