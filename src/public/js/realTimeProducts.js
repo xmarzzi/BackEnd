@@ -1,5 +1,7 @@
 const socket = io()
 
+  //<--------------------REALTIME PRODUCTS --------------------->
+
 const form = document.querySelector('#form');
 const title = document.querySelector('#title');
 const description = document.querySelector('#description');

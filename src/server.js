@@ -4,17 +4,20 @@ import { cartsRouter } from "./routes/carts.router.js";
 import handlebars from 'express-handlebars';
 import {homeProductsHtml} from "./routes/homeProducts.html.router.js";
 import {realTimeRouter} from "./routes/realTimeProduct.socket.router.js";
-import ProductManager from "./productManager.js";
-import { __dirname } from "./utils.js";
+import ProductManager from "./Dao/productManager.js";
+import { __dirname, connectMongo, connectSocket } from "./utils.js";
 import path from "path";
 import { Server } from "socket.io";
+import { testSocketChatRouter } from "./routes/chat.router.js";
 
 const app = express();
 const PORT = 8080;
 const httpServer = app.listen(PORT, () => {
    console.log(`Example app listening on http://localhost:${PORT}`)
  });
-const io = new Server(httpServer);
+connectMongo();
+connectSocket(httpServer);
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,11 +37,12 @@ app.use("/", homeProductsHtml )
 
 // RUTAS: SOCKETS
 app.use('/realtimeproducts', realTimeRouter)
+app.use("/chat", testSocketChatRouter);
 
 
 //CONECTANDO SOCKET
 
-io.on('connection', (socket) => {
+/*io.on('connection', (socket) => {
   console.log('Se abrió un canal de socket' + socket.id);
   const manager = new ProductManager("src/DB/products.json");
   
@@ -62,4 +66,4 @@ io.on('connection', (socket) => {
   });
 
 });
-
+*/

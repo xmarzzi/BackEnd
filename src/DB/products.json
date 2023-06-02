@@ -108,5 +108,16 @@
     "stock": "7",
     "category": "Accesories",
     "thumbnails": "./uploads/skateQuarters.jpg"
+  },
+  {
+    "id": 13,
+    "title": "a",
+    "description": "a",
+    "code": "a",
+    "price": "3",
+    "status": true,
+    "stock": "3",
+    "category": "q",
+    "thumbnails": ""
   }
 ]
